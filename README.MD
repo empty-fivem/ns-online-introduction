@@ -14,11 +14,24 @@ Known bugs:
   - Rendering issues in the car scene.
   - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
 
+To add:
+  - Display help text — the tutorial help boxes shown during the intro. Drawn via BeginTextCommandDisplayHelp / EndTextCommandDisplayHelp. GXT labels:
+    1. FMIC_INTRO2
+    2. FMIC_RACE1
+    3. FMIC_RACE2
+    4. FMIC_GAR
+    5. FMIC_TENN
+    6. HLP_XP1
+    7. HLP_XP2
+    8. HLP_RNK1
+    9. HLP_CASHGEN
+
 Credits:
   - Original script: Space V (not-a-script) — not-a-script/ns-online-introduction
   - References used for the fixes:
     - Decompiled fm_intro.c / fm_intro_cut_dev.c — calamity-inc/GTA-V-Decompiled-Scripts
     - Decompiled dialogue_handler.c — calamity-inc/GTA-V-Decompiled-Scripts
     - FM_1AU text label dump — RocwoDev/GTA-V-All-Labels
+    - Claude for the reverse engineering
 
 :warning: This script is not plug & play. If you don't have knowledge in development/FiveM, don't use it
