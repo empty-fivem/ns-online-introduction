@@ -448,6 +448,33 @@ Constants = {
     dialogueTextBlock = "FMINT",
     dialogueTextSlot = 10,
     subtitleDurationMs = 4000,
+    -- Arrival cutscene subtitle lines, keyed to GetCutsceneTime() ms. The keys
+    -- are joaat collision strings that hash to the cutfile's subtitle labels
+    -- (whose real names are unknown); GXT lookup is hash-based, so they resolve
+    -- to the correct FM_1AU text.
+    arrivalSubtitles = {
+        male = {
+            { time = 0, duration = 2590, key = "8q8sab0r" }, -- 0x52DF3EEF "Yeah dog. This the spot right here."
+            { time = 2962, duration = 2650, key = "8q8sab0s" }, -- 0x9CA1D27B "Go post up right there real quick while I make this call."
+            { time = 6059, duration = 2280, key = "8q8sab0t" }, -- 0xAF5477E0 "We gonna get you a car or something to race in or..."
+            { time = 8604, duration = 1529, key = "8q8sab0u" }, -- 0xF8FA0B26 "stare at the back of my shit in."
+            { time = 10291, duration = 1867, key = "8q8sab0v" }, -- 0x0993AC59 "'Cause you gonna eat my dust, punk."
+            { time = 14511, duration = 482, key = "8q8sab0w" }, -- 0x545E41ED "Shay, Shay."
+        },
+        female = {
+            { time = 150, duration = 1452, key = "c0qpaaqn" }, -- 0xDF8F8FBA "This the spot, baby."
+            { time = 1716, duration = 3847, key = "c0qpaaqo" }, -- 0xC1DF545A "Hey, just go post up and wait for me right there real quick while I make this call."
+            { time = 5629, duration = 2076, key = "c0qpaaqp" }, -- 0x89F064C5 "I gotta hit the homie auntie, you know, she got ass..."
+            { time = 8269, duration = 733, key = "c0qpaaqq" }, -- 0x7BDD489F "I mean, I mean..."
+            { time = 9069, duration = 1267, key = "c0qpaaqr" }, -- 0xB6903E08 "I'm a community activist."
+            { time = 10828, duration = 1476, key = "c0qpaaqs" }, -- 0x986601B4 "Anyway, we gonna get you a car."
+            { time = 12371, duration = 1667, key = "c0qpaaqt" }, -- 0x44E85AB6 "We gonna get you a car to race in, so..."
+            { time = 14104, duration = 705, key = "c0qpaaqu" }, -- 0x36C3BE6D "you know?"
+            { time = 14876, duration = 3015, key = "c0qpaaqv" }, -- 0x6D90AC06 "Well to look at the back of my shit in, 'cause you ain't gonna beat me."
+            { time = 18236, duration = 1209, key = "vq7baame" }, -- 0x4FBF601A "I'm just saying though, baby, you..."
+            { time = 20337, duration = 715, key = "vq7baamf" }, -- 0x8F7DDF96 "Fuck it."
+        },
+    },
     lamarLines = {
         male = {
             { time = 750, root = "FM_LAM1", label = "FM_LAM1_1" },

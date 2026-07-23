@@ -1,7 +1,24 @@
 GTA:Online Introduction (not only the cutscene everyone knows, but also the scripted part)
 
+Videos:
+  - Male: no
+  - Female: no
+
+Fixed bugs:
+  - ✅ Lamar doesn't speak when you're in the car with him — the conversation was built with the wrong ADD_LINE_TO_CONVERSATION arguments. Each line's audio filename, speaker/listener and flags are now read from the FM_1AU GXT block exactly like the game's dialogue_handler, the conversation is started once and left to play out (instead of being recreated every frame), and MP audio data is mounted with SetAudioFlag("LoadMPData", true).
+  - ✅ Subtitles don't work — the game's subtitle labels use the "~z~" token that the HUD only shows when the profile Subtitles setting is on. They are now printed manually so they always show: drive lines are drawn as each conversation line goes on air, and the arrival cutscene lines are re-fired from GetCutsceneTime() (FiveM doesn't play the cutfile's own subtitle events).
+
 Known bugs:
-  - Lamar doesn't speak when you're in the car with him
-  - Subtitles don't work
+  - Rendering issues in the car scene.
+  - Lamar's mouth stays closed while he talks in the car cutscene — no lip-sync (looks stupid). Likely because the speech is attached to the in-game Lamar ped while the visible one during the drive anims is the cutscene ped.
+  - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
+  - Female cutscene doesn't fully work — looks like the player ped gets swapped (to the male/default model?) during the plane scene.
+
+Credits:
+  - Original script: Space V (not-a-script) — not-a-script/ns-online-introduction
+  - References used for the fixes:
+    - Decompiled fm_intro.c / fm_intro_cut_dev.c — calamity-inc/GTA-V-Decompiled-Scripts
+    - Decompiled dialogue_handler.c — calamity-inc/GTA-V-Decompiled-Scripts
+    - FM_1AU text label dump — RocwoDev/GTA-V-All-Labels
 
 :warning: This script is not plug & play. If you don't have knowledge in development/FiveM, don't use it

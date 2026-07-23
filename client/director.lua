@@ -48,11 +48,16 @@
 IntroDirector = {}
 IntroDirector.__index = IntroDirector
 
+---@param isMaleOverride boolean? force the male/female variant; defaults to the ped's gender
 ---@return IntroDirector
-function IntroDirector.new()
+function IntroDirector.new(isMaleOverride)
     local self = setmetatable({}, IntroDirector)
     self.player = PlayerPedId()
-    self.isMale = IsPedMale(self.player)
+    if isMaleOverride ~= nil then
+        self.isMale = isMaleOverride
+    else
+        self.isMale = IsPedMale(self.player)
+    end
     self.heli = Recording.new(Constants.heliRecording, Constants.heliRecordingName)
     self.racers = {}
     self.racerVehicles = {}
@@ -226,6 +231,9 @@ function IntroDirector:preamble()
         if self.creditsPhase == "drive" then
             self.dialogue:tick(GetMusicPlaytime())
         end
+        if self.creditsPhase == "arrival" then
+            self.dialogue:arrivalTick(GetCutsceneTime())
+        end
         if self.credits:request() then
             local driveTime = self.creditsPhase == "drive" and GetMusicPlaytime() or 999999
             local arrivalTime = self.creditsPhase == "arrival" and GetCutsceneTime() or -1
@@ -287,13 +295,14 @@ end
 
 local running = false
 
+-- isMale: true/false forces that variant, nil uses the player's ped gender.
 RegisterNetEvent("introCinematic:start")
-AddEventHandler("introCinematic:start", function()
+AddEventHandler("introCinematic:start", function(isMale)
     if running then
         return
     end
     running = true
-    IntroDirector.new():play(function()
+    IntroDirector.new(isMale):play(function()
         running = false
     end)
 end)
