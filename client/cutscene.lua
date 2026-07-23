@@ -15,11 +15,16 @@ end
 Cutscene = {}
 Cutscene.__index = Cutscene
 
+---@param isMale boolean? forced variant; defaults to the player's ped gender
 ---@return Cutscene
-function Cutscene.new()
+function Cutscene.new(isMale)
     local self = setmetatable({}, Cutscene)
     self.player = PlayerPedId()
-    self.isMale = IsPedMale(self.player)
+    if isMale == nil then
+        self.isMale = IsPedMale(self.player)
+    else
+        self.isMale = isMale
+    end
     self.passengers = {}
     self.exhaustPtfx = {}
     self.lateApplied = false

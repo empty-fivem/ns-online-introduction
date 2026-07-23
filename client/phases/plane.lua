@@ -11,7 +11,7 @@ PlanePhase.__index = PlanePhase
 function PlanePhase.new(director)
     local self = setmetatable({}, PlanePhase)
     self.director = director
-    self.cut = Cutscene.new()
+    self.cut = Cutscene.new(director.isMale)
     self.started = false
     self.startTime = 0
     return self

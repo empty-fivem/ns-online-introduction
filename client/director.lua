@@ -295,6 +295,44 @@ end
 
 local running = false
 
+-- Scripted scenes render the live player ped, so a forced variant only looks
+-- right if the ped model matches. When it doesn't, swap to a default freemode
+-- ped of that gender and return a function that restores the original.
+---@param isMale boolean
+---@return fun()
+local function forcePlayerGender(isMale)
+    local player = PlayerPedId()
+    if isMale == IsPedMale(player) then
+        return function() end
+    end
+
+    -- keep the original appearance alive in a hidden clone
+    local originalModel = GetEntityModel(player)
+    local saved = ClonePed(player, false, false, true)
+    SetEntityVisible(saved, false, false)
+    SetEntityCollision(saved, false, false)
+    FreezeEntityPosition(saved, true)
+    SetEntityInvincible(saved, true)
+
+    local target = GetHashKey(isMale and Constants.maleFreemodeModel or Constants.femaleFreemodeModel)
+    RequestModel(target)
+    WaitUntil(function() return HasModelLoaded(target) end, "force gender model", 10000)
+    SetPlayerModel(PlayerId(), target)
+    SetModelAsNoLongerNeeded(target)
+    SetPedDefaultComponentVariation(PlayerPedId())
+
+    return function()
+        RequestModel(originalModel)
+        WaitUntil(function() return HasModelLoaded(originalModel) end, "restore ped model", 10000)
+        SetPlayerModel(PlayerId(), originalModel)
+        SetModelAsNoLongerNeeded(originalModel)
+        if DoesEntityExist(saved) then
+            ClonePedToTarget(saved, PlayerPedId())
+            DeleteEntity(saved)
+        end
+    end
+end
+
 -- isMale: true/false forces that variant, nil uses the player's ped gender.
 RegisterNetEvent("introCinematic:start")
 AddEventHandler("introCinematic:start", function(isMale)
@@ -302,7 +340,11 @@ AddEventHandler("introCinematic:start", function(isMale)
         return
     end
     running = true
-    IntroDirector.new(isMale):play(function()
-        running = false
+    CreateThread(function()
+        local restore = isMale ~= nil and forcePlayerGender(isMale) or function() end
+        IntroDirector.new(isMale):play(function()
+            restore()
+            running = false
+        end)
     end)
 end)
