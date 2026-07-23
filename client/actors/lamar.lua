@@ -3,6 +3,7 @@
 ---@field vehLamar integer?
 ---@field pedIGLamar integer?
 ---@field pedCSLamar integer?
+---@field visiblePed integer? the Lamar ped currently on screen (for dialogue lip-sync)
 LamarDrive = {}
 LamarDrive.__index = LamarDrive
 
@@ -54,6 +55,8 @@ function LamarDrive:create()
     SetEntityInvincible(self.pedCSLamar, true)
     SetEntityVisible(self.pedCSLamar, false, false)
 
+    self.visiblePed = self.pedIGLamar
+
     SetModelAsNoLongerNeeded(carHash)
     SetModelAsNoLongerNeeded(igHash)
     SetModelAsNoLongerNeeded(csHash)
@@ -86,6 +89,7 @@ end
 function LamarDrive:showDriving(seat)
     SetEntityVisible(self.pedIGLamar, true, false)
     SetEntityVisible(self.pedCSLamar, false, false)
+    self.visiblePed = self.pedIGLamar
     if seat then
         SetPedIntoVehicle(PlayerPedId(), self.vehLamar, 0)
     end
@@ -95,6 +99,7 @@ end
 function LamarDrive:playAnim(stage)
     SetEntityVisible(self.pedIGLamar, false, false)
     SetEntityVisible(self.pedCSLamar, true, false)
+    self.visiblePed = self.pedCSLamar
 
     local set = self.isMale and Constants.driveAnims.male or Constants.driveAnims.female
     local idx = self.isMale and 1 or 2

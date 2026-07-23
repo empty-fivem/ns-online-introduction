@@ -131,7 +131,8 @@ end
 ---@param root string subtitle root, e.g. "FM_LAM1"
 ---@param label string line label, e.g. "FM_LAM1_5"
 function LamarDialogue:playLine(root, label)
-    local ped = self.director.lamar.pedIGLamar
+    -- the on-screen Lamar ped, so lip-sync shows on the one the player sees
+    local ped = self.director.lamar.visiblePed or self.director.lamar.pedIGLamar
 
     -- 0-based position of this line within its conversation
     local lineNum = tonumber(label:match("_(%d+)$")) or 1
@@ -157,6 +158,9 @@ function LamarDialogue:playLine(root, label)
 
     CreateNewScriptedConversation()
     AddPedToConversation(1, ped, Constants.lamarSpeaker)
+
+    -- the sync scene disables viseme anims, so re-enable or the mouth stays shut
+    SetPedCanPlayVisemeAnims(ped, true, false)
 
     AddLineToConversation(
         speaker,

@@ -8,10 +8,10 @@ Fixed bugs:
   - ✅ Lamar doesn't speak when you're in the car with him — the conversation was built with the wrong ADD_LINE_TO_CONVERSATION arguments. Each line's audio filename, speaker/listener and flags are now read from the FM_1AU GXT block exactly like the game's dialogue_handler, the conversation is started once and left to play out (instead of being recreated every frame), and MP audio data is mounted with SetAudioFlag("LoadMPData", true).
   - ✅ Subtitles don't work — the game's subtitle labels use the "~z~" token that the HUD only shows when the profile Subtitles setting is on. They are now printed manually so they always show: drive lines are drawn as each conversation line goes on air, and the arrival cutscene lines are re-fired from GetCutsceneTime() (FiveM doesn't play the cutfile's own subtitle events).
   - ✅ Female intro shows the wrong gender — the plane cutscene re-detected gender from the live ped instead of the chosen variant, and the scripted scenes (drive/garage/race) always render the live ped, so forcing female on a male ped fell back to male. Fixed by giving the cutscene the director's isMale, and, when the forced gender differs from the ped, temporarily swapping to a default freemode ped of that gender (original model + appearance saved to a hidden clone and restored via ClonePedToTarget when the intro ends). No swap happens when the ped already matches.
+  - ✅ Lamar's mouth stays closed while he talks in the car — a ped driven by a synchronized scene has viseme (lip-sync) anims disabled, so the body animated but the face never moved. Fixed by calling SetPedCanPlayVisemeAnims(ped, true, false) on the speaking ped for each line, and by registering the Lamar ped that is actually on screen (the drive swaps between an in-game and a cutscene ped) so the lip-sync lands on the visible one.
 
 Known bugs:
   - Rendering issues in the car scene.
-  - Lamar's mouth stays closed while he talks in the car cutscene — no lip-sync (looks stupid). Likely because the speech is attached to the in-game Lamar ped while the visible one during the drive anims is the cutscene ped.
   - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
 
 Credits:
