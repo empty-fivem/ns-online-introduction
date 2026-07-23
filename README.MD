@@ -1,8 +1,9 @@
 GTA:Online Introduction (not only the cutscene everyone knows, but also the scripted part)
 
+The video still has some errors in them. (Lamar lip-sync & time of day)
 Videos:
-  - Male: no
-  - Female: no
+  - Male: https://youtu.be/SuZl_2auzIE
+  - Female: https://youtu.be/dgCo1mJB5Gc
 
 Fixed bugs:
   - ✅ Lamar doesn't speak when you're in the car with him — the conversation was built with the wrong ADD_LINE_TO_CONVERSATION arguments. Each line's audio filename, speaker/listener and flags are now read from the FM_1AU GXT block exactly like the game's dialogue_handler, the conversation is started once and left to play out (instead of being recreated every frame), and MP audio data is mounted with SetAudioFlag("LoadMPData", true).
@@ -13,6 +14,7 @@ Fixed bugs:
 
 Known bugs:
   - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
+  - There are still some Lamar lip-sync issues
 
 Added:
   - ✅ Display help text — the tutorial help boxes (FMIC_INTRO2 / FMIC_RACE1 / FMIC_RACE2 / FMIC_GAR / FMIC_TENN) now show during the intro. Fired via Util.printHelp (BeginTextCommandDisplayHelp) at each phase in the original's order — anchored to the SRL readahead changes from fm_intro.c. The FMINT text block is loaded early in setup so the labels resolve in time.
