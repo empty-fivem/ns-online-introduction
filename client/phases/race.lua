@@ -182,6 +182,7 @@ function RacePhase:stages()
                 d:startRaceCam(Constants.raceCams.race1)
                 d:destroyScriptedCam()
                 d:srlReadahead(Constants.srlReadaheadNormalSp)
+                Util.printHelp(Constants.helpText.race1)
                 StartAudioScene(Constants.audioScene)
                 d.audioSceneStarted = true
             end,
@@ -196,7 +197,10 @@ function RacePhase:stages()
         },
         {
             name = "RACE_2",
-            setup = function() self.director:startRaceCam(Constants.raceCams.race2) end,
+            setup = function()
+                self.director:startRaceCam(Constants.raceCams.race2)
+                Util.printHelp(Constants.helpText.race2)
+            end,
             advance = function()
                 if GetMusicPlaytime() < Constants.stageTimes.race2 then
                     return false

@@ -19,6 +19,8 @@ end
 
 function SetupPhase:enter()
     DoScreenFadeOut(Constants.fadeTime)
+    -- load early so the FMIC_* help boxes resolve during the scripted phases
+    RequestAdditionalText(Constants.dialogueTextBlock, Constants.dialogueTextSlot)
     PrefetchSrl(Constants.srlName)
     SetSrlLongJumpMode(true)
     self.srlStart = GetGameTimer()

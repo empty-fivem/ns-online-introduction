@@ -147,6 +147,7 @@ function GaragePhase:startGarage()
     self:createEntities()
     d:createScriptedCam(Constants.cams.garage1)
     d:srlReadahead(Constants.srlReadaheadHeavy)
+    Util.printHelp(Constants.helpText.garage)
     self:resetMechanicScene()
     d:destroyRaceCam()
     if d.audioSceneStarted and IsAudioSceneActive(Constants.audioScene) then

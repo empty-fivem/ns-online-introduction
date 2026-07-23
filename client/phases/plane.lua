@@ -42,6 +42,7 @@ function PlanePhase:enter()
     self.cut:begin()
     self.cut:startExhaustPtfx()
     d:srlReadahead(Constants.srlReadaheadNormal)
+    Util.printHelp(Constants.helpText.plane)
     d.mocapStarted = true
     self.startTime = GetGameTimer()
 end

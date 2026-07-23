@@ -1,5 +1,12 @@
 Util = {}
 
+-- tutorial help box; matches fm_intro.c func_77
+---@param label string GXT label, e.g. "FMIC_RACE1"
+function Util.printHelp(label)
+    BeginTextCommandDisplayHelp(label)
+    EndTextCommandDisplayHelp(0, false, false, -1)
+end
+
 ---@param model string
 ---@return integer
 function Util.loadModel(model)

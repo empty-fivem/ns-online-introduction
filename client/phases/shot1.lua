@@ -47,6 +47,7 @@ function Shot1Phase:startAdvance()
         BeginSrl()
         self.director.srlActive = true
     end
+    Util.printHelp(Constants.helpText.intro)
     if IsScreenFadedOut() then
         DoScreenFadeIn(Constants.fadeTime)
     end

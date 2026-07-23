@@ -14,17 +14,8 @@ Fixed bugs:
 Known bugs:
   - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
 
-To add:
-  - Display help text — the tutorial help boxes shown during the intro. Drawn via BeginTextCommandDisplayHelp / EndTextCommandDisplayHelp. GXT labels:
-    1. FMIC_INTRO2
-    2. FMIC_RACE1
-    3. FMIC_RACE2
-    4. FMIC_GAR
-    5. FMIC_TENN
-    6. HLP_XP1
-    7. HLP_XP2
-    8. HLP_RNK1
-    9. HLP_CASHGEN
+Added:
+  - ✅ Display help text — the tutorial help boxes (FMIC_INTRO2 / FMIC_RACE1 / FMIC_RACE2 / FMIC_GAR / FMIC_TENN) now show during the intro. Fired via Util.printHelp (BeginTextCommandDisplayHelp) at each phase in the original's order — anchored to the SRL readahead changes from fm_intro.c. The FMINT text block is loaded early in setup so the labels resolve in time.
 
 Credits:
   - Original script: Space V (not-a-script) — not-a-script/ns-online-introduction

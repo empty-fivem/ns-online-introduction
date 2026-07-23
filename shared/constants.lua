@@ -447,6 +447,14 @@ Constants = {
     lamarSpeaker = "Lamar",
     dialogueTextBlock = "FMINT",
     dialogueTextSlot = 10,
+    -- intro tutorial help boxes, in order (labels live in the FMINT block)
+    helpText = {
+        intro = "FMIC_INTRO2",
+        race1 = "FMIC_RACE1",
+        race2 = "FMIC_RACE2",
+        garage = "FMIC_GAR",
+        plane = "FMIC_TENN",
+    },
     subtitleDurationMs = 4000,
     -- Arrival cutscene subtitle lines, keyed to GetCutsceneTime() ms. The keys
     -- are joaat collision strings that hash to the cutfile's subtitle labels
