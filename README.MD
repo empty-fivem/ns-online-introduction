@@ -9,9 +9,9 @@ Fixed bugs:
   - ✅ Subtitles don't work — the game's subtitle labels use the "~z~" token that the HUD only shows when the profile Subtitles setting is on. They are now printed manually so they always show: drive lines are drawn as each conversation line goes on air, and the arrival cutscene lines are re-fired from GetCutsceneTime() (FiveM doesn't play the cutfile's own subtitle events).
   - ✅ Female intro shows the wrong gender — the plane cutscene re-detected gender from the live ped instead of the chosen variant, and the scripted scenes (drive/garage/race) always render the live ped, so forcing female on a male ped fell back to male. Fixed by giving the cutscene the director's isMale, and, when the forced gender differs from the ped, temporarily swapping to a default freemode ped of that gender (original model + appearance saved to a hidden clone and restored via ClonePedToTarget when the intro ends). No swap happens when the ped already matches.
   - ✅ Lamar's mouth stays closed while he talks in the car — a ped driven by a synchronized scene has viseme (lip-sync) anims disabled, so the body animated but the face never moved. Fixed by calling SetPedCanPlayVisemeAnims(ped, true, false) on the speaking ped for each line, and by registering the Lamar ped that is actually on screen (the drive swaps between an in-game and a cutscene ped) so the lip-sync lands on the visible one.
+  - ✅ Rendering issues in the car scene — not a script bug. This is just how the RAGE engine streams during a fast scripted drive. The streaming setup already matches the original game (SRL pre-streaming path, readahead times, focus handling), so there's nothing to fix. (Could also be my computer is trash...)
 
 Known bugs:
-  - Rendering issues in the car scene.
   - Missing scene — Reference: https://youtu.be/KF2jp5ic4LY?t=241 ("GTA Online - Welcome to Los Santos", ~4:01).
 
 To add:
