@@ -17,14 +17,10 @@ Known bugs:
   - There are still some Lamar lip-sync issues
 
 Added:
-  - ✅ Display help text — the tutorial help boxes (FMIC_INTRO2 / FMIC_RACE1 / FMIC_RACE2 / FMIC_GAR / FMIC_TENN) now show during the intro. Fired via Util.printHelp (BeginTextCommandDisplayHelp) at each phase in the original's order — anchored to the SRL readahead changes from fm_intro.c. The FMINT text block is loaded early in setup so the labels resolve in time.
+  - ✅ Display help text — the tutorial help boxes (FMIC_INTRO2 / FMIC_RACE1 / FMIC_RACE2 / FMIC_GAR / FMIC_TENN) now show during the intro. Fired via Util.printHelp (BeginTextCommandDisplayHelp) at each phase in the original's order — anchored to the SRL readahead changes. 
+  - The FMINT text block is loaded early in setup so the labels resolve in time.
 
 Credits:
   - Original script: Space V (not-a-script) — not-a-script/ns-online-introduction
-  - References used for the fixes:
-    - Decompiled fm_intro.c / fm_intro_cut_dev.c — calamity-inc/GTA-V-Decompiled-Scripts
-    - Decompiled dialogue_handler.c — calamity-inc/GTA-V-Decompiled-Scripts
-    - FM_1AU text label dump — RocwoDev/GTA-V-All-Labels
-    - Claude for the reverse engineering
 
 :warning: This script is not plug & play. If you don't have knowledge in development/FiveM, don't use it

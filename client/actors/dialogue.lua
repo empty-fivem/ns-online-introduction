@@ -126,7 +126,6 @@ function LamarDialogue:init()
     end, "FMINT dialogue text", 5000)
 end
 
--- Port of dialogue_handler.c sub_40e3: every ADD_LINE_TO_CONVERSATION argument
 -- is read out of the FM_1AU GXT block.
 ---@param root string subtitle root, e.g. "FM_LAM1"
 ---@param label string line label, e.g. "FM_LAM1_5"

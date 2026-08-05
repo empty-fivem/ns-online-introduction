@@ -1,6 +1,5 @@
 Util = {}
 
--- tutorial help box; matches fm_intro.c func_77
 ---@param label string GXT label, e.g. "FMIC_RACE1"
 function Util.printHelp(label)
     BeginTextCommandDisplayHelp(label)
